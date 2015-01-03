@@ -2,7 +2,7 @@
    Author:  dave
    License: WTFPL, see COPYING
    Version: 0.1
-   
+
    This program is free software. It comes without any warranty, to
    the extent permitted by applicable law. You can redistribute it
    and/or modify it under the terms of the Do What The Fuck You Want
@@ -149,7 +149,7 @@ Func SaveRealmlist($realmlistFile, ByRef $realms)
 	  Local $file = FileOpen($realmlistFile, 2)
 	  Local $realmInfo = StringSplit(GUICtrlRead($activeCtl), "|")
 	  For $realm in $realms
-		 If Not IsArray($realm) Then 
+		 If Not IsArray($realm) Then
 			ContinueLoop
 		 Else
 			If $realm[0] <> $realmInfo[2] Then
@@ -201,7 +201,7 @@ Func Main()
 
    Local $realms[1]
    $realms = UpdateRealmlist(GetRealmlistPath($wowDir))
-   If @error Then 
+   If @error Then
 	  GUICtrlSetState($btnNew, $GUI_DISABLE)
 	  GUICtrlSetColor($inputInstallDir, 0xff0000)
 	  Msgbox(48, "Error", "Invalid World of Warcraft installation directory selected, or none was detected. Please select the proper directory.")
@@ -212,7 +212,7 @@ Func Main()
    GUICtrlCreateLabel("Server:", 10, 35, 40, 22)
    Local $inputName = GUICtrlCreateInput("", 50, 8, 200, 22)
    Local $inputServer = GUICtrlCreateInput("", 50, 32, 200, 22)
-   
+
    Local $btnOk = GUICtrlCreateButton("OK", 70, 64, 90, 28)
    Local $btnCancel = GUICtrlCreateButton("Cancel", 160, 64, 90, 28)
 
@@ -261,7 +261,7 @@ Func Main()
 				  Run($wowDir & "\Wow.exe", $wowDir)
 				  ;ShellExecute($wowDir & "\WoW.exe", "", $wowDir)
                Case $btnSelectDir
-                  Local $wowDir = FileSelectFolder("Select Installation Directory", "", 2, $wowDir)
+                  $wowDir = FileSelectFolder("Select Installation Directory", "", 2, $wowDir)
 				  If @error = 0 Then
 					 $realms = UpdateRealmlist(GetRealmlistPath($wowDir))
 					 IniWrite($configFile, "main", "wow_dir", $wowDir)
